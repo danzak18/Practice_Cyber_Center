@@ -1,0 +1,54 @@
+#This script will pull a python http server and run it on port 80. Your apache server is currently occupying port 80. Add a play to remove the issue. Good Luck!
+---
+ - hosts: all
+   become: true
+   vars: 
+    create_container: 1
+    container_name: detect
+    container_image: 'trinitronx/python-simplehttpserver'
+    default_container_command: ls
+   tasks:
+ 
+    - name: install apptitude using apt
+      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+
+
+    - name: install required system packages
+      apt: name={{item}} state=latest update_cache=yes
+      loop: [ 'apt-transport-https','python-pip', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools' ]
+
+    - name: add docker GPG apt key
+      apt_key:
+       url: https://download.docker.com/linux/ubuntu/gpg
+       state: present
+
+
+    - name: add docker repo
+      apt_repository:
+       repo: deb https://download.docker.com/linux/ubuntu bionic stable
+       state: present
+
+
+    - name: update apt and install docker-ce
+      apt: update_cache=yes name=docker-ce state=latest
+
+
+    - name: docker for python module
+      pip: 
+       name: docker
+
+    - name: pull desired docker image
+      docker_image: 
+       name: "{{ container_image }}"
+       source: pull
+
+    - name: create container
+      docker_container: 
+       name: "{{ container_name }}{{ item }}"
+       image: "{{ container_image }}"
+       command: "{{ default_container_command }}"
+       state: present
+      with_sequence: count={{ create_container }}
+
+    - name: run the newest container
+      command:  docker run -d -v /tmp/:/var/www:ro -p 80:8080 trinitronx/python-simplehttpserver
