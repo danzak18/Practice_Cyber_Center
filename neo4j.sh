@@ -1,4 +1,4 @@
-sudo apt-get install wget curl git 
+sudo apt-get -y install wget curl git 
 
 
 
@@ -18,15 +18,15 @@ echo "deb http://httpredir.debian.org/debian jessie-backports main" | sudo tee -
 
 
 
-sudo apt-get update 
+sudo apt-get -y update 
 
 
 
-sudo apt-get install openjdk-8-jdk openjdk-8-jre 
+sudo apt-get -y install openjdk-8-jdk openjdk-8-jre 
 
 
 
-sudo apt-get install neo4j 
+sudo apt-get -y install neo4j 
 
 
 
