@@ -35,4 +35,21 @@
       shell: sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     - name: add docker compose to file
       shell: sudo chmod +x /usr/local/bin/docker-compose
+    - name: get git repo
+      git:
+       repo: https://dzakai:jEFWbT5Zvxj65PyvGLUo@gitlab.deloitte.network/asm/dockerized-phishing.git
+       dest: /tmp/dockerized-phishing
+
+    - name: run the bash script
+      shell: bash init-no-LE.sh
+      args:
+       chdir: /tmp/dockerized-phishing/phish
+
+    - name: run the docker
+      shell: docker-compose up > /tmp/stats.txt
+      args:
+       chdir: /tmp/dockerized-phishing/phish/
+      async: 60
+      poll: 0
+    
 
