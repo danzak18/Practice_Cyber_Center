@@ -37,7 +37,7 @@
       shell: sudo chmod +x /usr/local/bin/docker-compose
     - name: get git repo
       git:
-       repo: https://dzakai:jEFWbT5Zvxj65PyvGLUo@gitlab.deloitte.network/asm/dockerized-phishing.git
+       repo: https://<user>:<password>@gitlab.deloitte.network/asm/dockerized-phishing.git
        dest: /tmp/dockerized-phishing
 
     - name: run the bash script
