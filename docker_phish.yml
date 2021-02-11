@@ -49,7 +49,7 @@
       shell: docker-compose up > /tmp/stats.txt
       args:
        chdir: /tmp/dockerized-phishing/phish/
-      async: 1000
+      async: 10000
       poll: 0
     
 
