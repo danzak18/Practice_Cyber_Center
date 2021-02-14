@@ -1,5 +1,5 @@
-export DOTNET_ROOT=/tmp/dotnet
+export DOTNET_ROOT=/opt/dotnet
 
-export PATH=$PATH:/tmp/dotnet
+export PATH=$PATH:/opt/dotnet
 dotnet build
 dotnet run
