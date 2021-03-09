@@ -1,4 +1,4 @@
-sudo apt-get -y install wget curl git 
+sudo apt-get install wget curl git 
 
 
 
@@ -18,15 +18,15 @@ echo "deb http://httpredir.debian.org/debian jessie-backports main" | sudo tee -
 
 
 
-sudo apt-get -y update 
+sudo apt-get update 
 
 
 
-sudo apt-get -y install openjdk-8-jdk openjdk-8-jre 
+sudo apt-get install openjdk-8-jdk openjdk-8-jre 
 
 
 
-sudo apt-get -y install neo4j 
+sudo apt-get install neo4j 
 
 
 
@@ -46,6 +46,10 @@ echo "dbms.allow_format_migration=true" >> /etc/neo4j/neo4j.conf
 
 
 
+sudo reboot 
+
+
+
 rm /var/lib/neo4j/data/dbms/auth 
 
 
@@ -62,6 +66,4 @@ echo neo4j:SHA-256,D1AAAEE1176D24F76BC1BBA0E36AD60D3E696A73490540BC473C81B3CD17A
 
 
 
-service neo4j stop
-
-service neo4j start
+neo4j start
