@@ -1,0 +1,8 @@
+network:
+    version: 2
+    ethernets:
+        eth0:         
+            nameservers:
+                    addresses: [192.168.57.4]
+            dhcp4-overrides:
+                    use-dns: false
